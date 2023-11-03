@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0625e3ec099768f46a68fc3da568a1c2
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 73310
+  packageName: Apartment Building
+  packageVersion: 1.2
+  assetPath: Assets/Apartment_Building/Materials/conditiones.mat
+  uploadId: 598035
