@@ -8,8 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Drywall_A
-  m_Shader: {fileID: -6465566751694194690, guid: e66a6962a0a85c047a4562d2a5cbec3a,
-    type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: e66a6962a0a85c047a4562d2a5cbec3a, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
@@ -286,11 +285,9 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - Color_0946a8f17a7e4e2cae939faaa2097c87: {r: 0.9975, g: 1, b: 0.95, a: 1}
-    - Color_2b851b1dc25f4c43936e21ac86cbc424: {r: 0.3123294, g: 0.5283019, b: 0.33196324,
-        a: 0}
+    - Color_2b851b1dc25f4c43936e21ac86cbc424: {r: 0.3123294, g: 0.5283019, b: 0.33196324, a: 0}
     - Color_6e6a298527604413a6113bd9ae9cfc07: {r: 1, g: 0, b: 0.48463917, a: 0}
-    - Color_c617285b68b74603a782762d06abb635: {r: 0.17147255, g: 0.30524716, b: 0.8018868,
-        a: 0}
+    - Color_c617285b68b74603a782762d06abb635: {r: 0.17147255, g: 0.30524716, b: 0.8018868, a: 0}
     - _BaseColor: {r: 1, g: 0.98845, b: 0.901, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 0.98845, b: 0.901, a: 1}
@@ -320,7 +317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da692e001514ec24dbc4cca1949ff7e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 12
+  version: 13
   hdPluginSubTargetMaterialVersions:
     m_Keys: []
     m_Values: 
