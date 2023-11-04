@@ -3,7 +3,11 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     public int MaxHealth = 100;
+
     public HealthBar healthBar;
+    public GameState gameState;
+    [SerializeField] GameObject player;
+    [SerializeField] GameObject gameStateManager;
 
     [SerializeField]
     private int currentHealth;
@@ -15,6 +19,10 @@ public class PlayerHealth : MonoBehaviour
 
     private void Start()
     {
+        // Retrieve healthbar script and game state script
+        healthBar = player.GetComponent<HealthBar>();
+        gameState = gameStateManager.GetComponent<GameState>();
+
         currentHealth = MaxHealth;
         healthBar.SetMaxHealth(MaxHealth);
     }
@@ -36,7 +44,8 @@ public class PlayerHealth : MonoBehaviour
     private void Die()
     {
         Debug.Log("Player has died!");
-        // Add death logic here
+
+        gameState.gameOver(); // Displays game over screen
     }
 }
 
