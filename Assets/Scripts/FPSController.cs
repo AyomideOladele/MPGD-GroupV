@@ -25,14 +25,18 @@ public class FPSController : MonoBehaviour
     CharacterController characterController;
     void Start()
     {
+        HideAndLockCursor();
         characterController = GetComponent<CharacterController>();
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 
     void Update()
     {
 
+        // Press Escape to unlock the cursor
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            UnlockAndShowCursor();
+        }
         #region Handles Movment
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
@@ -75,5 +79,15 @@ public class FPSController : MonoBehaviour
         }
 
         #endregion
+    }
+    private void HideAndLockCursor()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+    private void UnlockAndShowCursor()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 }
