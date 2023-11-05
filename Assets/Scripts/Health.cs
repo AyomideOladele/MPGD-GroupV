@@ -20,6 +20,11 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
         // Retrieve healthbar script and game state script
+<<<<<<< HEAD
+=======
+        healthBar = player.GetComponent<HealthBar>();
+        gameState = gameStateManager.GetComponent<GameState>();
+>>>>>>> 01ddb483f1ca137f3c45135e3087d9e3ff5a0312
 
         currentHealth = MaxHealth;
         healthBar.SetMaxHealth(MaxHealth);

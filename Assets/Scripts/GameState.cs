@@ -18,6 +18,7 @@ public class GameState : MonoBehaviour
     public void gameOver()
     {
         gameOverScreen.SetActive(true);
+<<<<<<< HEAD
         Time.timeScale = 0f;
     }
     // Call this method to restart time when starting a new game or loading a level
@@ -36,4 +37,7 @@ public class GameState : MonoBehaviour
         }
     }
 
+=======
+    }
+>>>>>>> 01ddb483f1ca137f3c45135e3087d9e3ff5a0312
 }
