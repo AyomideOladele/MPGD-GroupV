@@ -49,7 +49,7 @@ public class FPSController : MonoBehaviour
         moveDirection = (forward * curSpeedX) + (right * curSpeedY);
 
         #endregion
-
+        //click space to jump
         #region Handles Jumping
         if (Input.GetButton("Jump") && canMove && characterController.isGrounded)
         {
@@ -80,6 +80,7 @@ public class FPSController : MonoBehaviour
 
         #endregion
     }
+    //This function mainly to hide the Mouse Arrow, click esc to show mouse arrow.
     private void HideAndLockCursor()
     {
         Cursor.visible = false;

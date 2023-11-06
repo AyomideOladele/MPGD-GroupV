@@ -10,6 +10,7 @@ public class Flashlight : MonoBehaviour
 
 
     // Start is called before the first frame update
+    // flashlight will be off intial
     void Start()
     {
         ON.SetActive(false);
@@ -18,6 +19,7 @@ public class Flashlight : MonoBehaviour
     }
 
     // Update is called once per frame
+    // click F to turn ON and Off object to active. Which mean to switch on and off of the light
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.F))

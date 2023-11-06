@@ -5027,7 +5027,12 @@ MonoBehaviour:
 
     E: Interact
 
-    F: Toggle Flashlight'
+    F: Toggle Flashlight
+
+    Shift:
+    Sprint
+
+    Space: Jump'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5911,7 +5916,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 135972017}
-  speed: 10
+  speed: 7
   damage: 10
 --- !u!54 &602851064
 Rigidbody:

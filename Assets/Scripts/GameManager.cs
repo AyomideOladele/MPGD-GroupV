@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
         itemsRemaining = totalItemCount;
         UpdateCounterText(); // Update the UI text on start
     }
-
+    //Counter for remaining time, if item is = 0----> win
     public void ItemCollected()
     {
         itemsRemaining--;
@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
            WinGame();
         }
     }
-
+    //Update the number of item
     private void UpdateCounterText()
     {
         if (counterText != null)
@@ -50,18 +50,18 @@ public class GameManager : MonoBehaviour
             Debug.LogError("Counter Text not assigned in the Inspector");
         }
     }
-
+    //show the win game screen and freeze the game
     private void WinGame()
     {
         winText.gameObject.SetActive(true);
         Time.timeScale = 0f;
     }
-
+    //restart the game and unfreeze
     public void RestartTime()
     {
         Time.timeScale = 1f;
     }
-
+    //if the game is freezing, click r to restart
     void Update()
     {
         // Restart the level if the player presses the R key after winning
