@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
@@ -18,7 +17,7 @@ public class MessageSpawner : MonoBehaviour
     private float scrollDuration = 0.3f;
     private float scrollSpeed = 200f; 
     
-    private float sceneTransitionWaitTime = 60f; // Time after which the scene will change
+    private float sceneTransitionWaitTime = 50f; // Time after which the scene will change
 
     void Start()
     {
@@ -27,18 +26,18 @@ public class MessageSpawner : MonoBehaviour
         StartCoroutine(TransitionToNextSceneAfterTime(sceneTransitionWaitTime)); 
     }
 
+    // Spawn messages with regular delays and scrolling
     private IEnumerator DisplayMessages()
     {
         foreach (GameObject message in messages)
         {
             messageCount++;
-            message.SetActive(true); // Activate the current message
-            audioSource.Play(); // Play the sound
-            yield return new WaitForSeconds(interval); // Wait for the interval time
 
-            Debug.Log("coontinuing");
+            message.SetActive(true);
+            audioSource.Play();
+            yield return new WaitForSeconds(interval); 
             
-            if (messageCount >= 9 && messageCount != 13) // Start scrolling after the 10th message
+            if (messageCount >= 9 && messageCount != 13)
             {
                 startScrolling = true;
                 scrollTimer = 0.1f;
@@ -46,6 +45,7 @@ public class MessageSpawner : MonoBehaviour
         }
     }
 
+    // Transition to game scene
     IEnumerator TransitionToNextSceneAfterTime(float sceneTransitionWaitTime)
     {
         yield return new WaitForSeconds(sceneTransitionWaitTime);
