@@ -7,8 +7,9 @@ public class MainMenu : MonoBehaviour
     //In main menu click play to enter the next scene
     public void Play()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); // Load group chat backstory scene
     }
+
     //Exit the game
     public void Quit()
     {
