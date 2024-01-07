@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    public DiaryManager diaryManager;
 
     public Text counterText;
     public GameObject winText;
@@ -27,17 +28,35 @@ public class GameManager : MonoBehaviour
         itemsRemaining = totalItemCount;
         UpdateCounterText(); // Update the UI text on start
     }
+
     //Counter for remaining time, if item is = 0----> win
     public void ItemCollected()
     {
+        if (itemsRemaining == 1)
+        {
+            diaryManager.OpenDiaryPage1();
+        }
+        else if (itemsRemaining == 2)
+        {
+            diaryManager.OpenDiaryPage2();
+        }
+        else if (itemsRemaining == 3)
+        {
+            diaryManager.OpenDiaryPage3();
+        }
+
         itemsRemaining--;
         UpdateCounterText();
+    }
 
+    public void CheckForWin()
+    {
         if (itemsRemaining <= 0)
         {
-           WinGame();
+            WinGame();
         }
     }
+
     //Update the number of item
     private void UpdateCounterText()
     {

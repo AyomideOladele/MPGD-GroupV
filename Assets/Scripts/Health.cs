@@ -24,7 +24,7 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = MaxHealth;
         healthBar.SetMaxHealth(MaxHealth);
     }
-    // It used to define the helath when take damage
+    // It used to define the health when take damage
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
