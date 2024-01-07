@@ -15,9 +15,9 @@ public class MessageSpawner : MonoBehaviour
 
     private float scrollTimer = 0.1f;
     private float scrollDuration = 0.3f;
-    private float scrollSpeed = 220f; 
+    private float scrollSpeed = 210f; 
     
-    private float sceneTransitionWaitTime = 50f; // Time after which the scene will change
+    private float sceneTransitionWaitTime = 36f; // Time after which the scene will change
 
     void Start()
     {
