@@ -15,7 +15,7 @@ public class MessageSpawner : MonoBehaviour
 
     private float scrollTimer = 0.1f;
     private float scrollDuration = 0.3f;
-    private float scrollSpeed = 200f; 
+    private float scrollSpeed = 220f; 
     
     private float sceneTransitionWaitTime = 50f; // Time after which the scene will change
 
@@ -37,7 +37,7 @@ public class MessageSpawner : MonoBehaviour
             audioSource.Play();
             yield return new WaitForSeconds(interval); 
             
-            if (messageCount >= 9 && messageCount != 13)
+            if (messageCount >= 8 && messageCount != 13)
             {
                 startScrolling = true;
                 scrollTimer = 0.1f;
