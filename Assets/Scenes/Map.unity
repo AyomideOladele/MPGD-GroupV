@@ -3268,7 +3268,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2dbcab6e0dc65cd42bf4ea46d6561412, type: 2}
+  - {fileID: 2100000, guid: 7d74e7e555f1d8c4bb39338b96ea30a8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7089,7 +7089,6 @@ GameObject:
   - component: {fileID: 135972020}
   - component: {fileID: 135972021}
   - component: {fileID: 135972022}
-  - component: {fileID: 135972023}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -12488,7 +12487,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d41717252cdd0d4b95ea2e5d91d6c8e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier:
+  m_EditorClassIdentifier: 
 --- !u!1 &230262843 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1045554870899298, guid: 78622f696f6248e4dbc85cadd8905044, type: 3}
@@ -41468,6 +41467,12 @@ MonoBehaviour:
   staticObject: {fileID: 60802588}
   staticActivationRange: 12
   groundCheckDistance: 0.2
+  damageRate: 10
+  playerHealth: 100
+  playerHealthManager: {fileID: 0}
+  maxPlayerHealth: 100
+  healingRate: 10
+  restartCanvas: {fileID: 0}
 --- !u!4 &850796909
 Transform:
   m_ObjectHideFlags: 0
@@ -81040,7 +81045,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1014143189}
-  - {fileID: 1503865259}
+  - {fileID: 60802594}
   m_Father: {fileID: 135972017}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!81 &1760624659
@@ -101085,3 +101090,4 @@ SceneRoots:
   - {fileID: 945570070}
   - {fileID: 926353121}
   - {fileID: 1794475955}
+  - {fileID: 15647862}
