@@ -14,5 +14,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Map.unity
     guid: f4a0b8f4455c4544cadda4dbf79cf34d
+  - enabled: 1
+    path: Assets/Scenes/School.unity
+    guid: ad1fcb1cc2db648f4905d988a600674b
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
