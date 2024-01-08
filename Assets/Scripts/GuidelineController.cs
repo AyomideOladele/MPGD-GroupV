@@ -1,40 +1,37 @@
 using UnityEngine;
-using UnityEngine.UI; // Use 'using TMPro;' if you're using TextMeshPro
+using UnityEngine.UI;
 
 public class GuidelineController : MonoBehaviour
 {
-    public GameObject guidelinePanel;
-    public float displayTime = 10.0f; // Time in seconds to display the guideline
+    public GameObject guidelineText;
+
+    private bool isGuidelineVisible = true; // Track whether the guideline text is currently visible
 
     // Start is called before the first frame update
     void Start()
     {
-        // Display the guideline panel
-        if (guidelinePanel != null)
-        {
-            guidelinePanel.SetActive(true);
-        }
-        // Automatically hide the guideline after a set amount of time
-        Invoke("HideGuideline", displayTime);
+        // Display the guideline text initially
+        ToggleGuidelineVisibility(true);
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Hide the guideline if the user presses the Escape key
-        if (Input.GetKeyDown(KeyCode.Escape) && guidelinePanel.activeSelf)
+        // Toggle the guideline text visibility when the F1 key is pressed
+        if (Input.GetKeyDown(KeyCode.F1))
         {
-            HideGuideline();
+            ToggleGuidelineVisibility(!isGuidelineVisible);
         }
     }
 
-    void HideGuideline()
+    void ToggleGuidelineVisibility(bool isVisible)
     {
-        // Hide the guideline panel
-        if (guidelinePanel != null)
+        // Toggle the guideline text visibility based on the 'isVisible' parameter
+        if (guidelineText != null)
         {
-            guidelinePanel.SetActive(false);
+            guidelineText.gameObject.SetActive(isVisible);
+            isGuidelineVisible = isVisible;
         }
     }
 }
-    
+

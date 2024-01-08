@@ -4763,14 +4763,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'WASD: Movement
+  m_text: 'Press F1 to toggle
+
+
+    WASD: Movement
 
     E: Interact
 
-    F: Toggle Flashlight
+    F: Toggle
+    Flashlight
 
-    Shift:
-    Sprint
+    Shift: Sprint
 
     Space: Jump'
   m_isRightToLeft: 0
@@ -18726,8 +18729,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0947aeb147583ae469412cc28c4ab1ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guidelinePanel: {fileID: 2055463206}
-  displayTime: 10
+  guidelineText: {fileID: 489894794}
 --- !u!114 &2055463208
 MonoBehaviour:
   m_ObjectHideFlags: 0
