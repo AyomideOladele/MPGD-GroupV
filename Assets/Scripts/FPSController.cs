@@ -24,7 +24,7 @@ public class FPSController : MonoBehaviour
 
     CharacterController characterController;
     void Start()
-    {
+    {   
         HideAndLockCursor();
         characterController = GetComponent<CharacterController>();
     }
@@ -36,6 +36,11 @@ public class FPSController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             UnlockAndShowCursor();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            HideAndLockCursor();
         }
         #region Handles Movment
         Vector3 forward = transform.TransformDirection(Vector3.forward);

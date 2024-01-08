@@ -13,31 +13,26 @@ public class DiaryManager : MonoBehaviour
     public void OpenDiaryPage1()
     {
         diaryPage1.SetActive(true);
-        PauseGame();
     }
 
     public void CloseDiaryPage1()
     {
         diaryPage1.SetActive(false);
-        ResumeGame();
     }
 
     public void OpenDiaryPage2()
     {
         diaryPage2.SetActive(true);
-        PauseGame();
     }
 
     public void CloseDiaryPage2()
     {
         diaryPage2.SetActive(false);
-        ResumeGame();
     }
 
     public void OpenDiaryPage3()
     {
         diaryPage3.SetActive(true);
-        PauseGame();
     }
 
     public void CloseDiaryPage3()
