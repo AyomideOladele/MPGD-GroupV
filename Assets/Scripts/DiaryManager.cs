@@ -20,6 +20,15 @@ public class DiaryManager : MonoBehaviour
             Debug.LogError("GameManager not found!");
         }
     }
+
+    private void Update()
+    {
+        // Check if 'C' key is pressed
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            CloseAllDiaryPages();
+        }
+    }
     public void OpenDiaryPage1()
     {
         diaryPage1.SetActive(true);
@@ -58,14 +67,12 @@ public class DiaryManager : MonoBehaviour
         }
     }
 
-    private void PauseGame()
+    // Helper method to close all diary pages
+    private void CloseAllDiaryPages()
     {
-        Time.timeScale = 0f;
-    }
-
-    private void ResumeGame()
-    {
-        Time.timeScale = 1f;
+        CloseDiaryPage1();
+        CloseDiaryPage2();
+        CloseDiaryPage3();
     }
 
 }
