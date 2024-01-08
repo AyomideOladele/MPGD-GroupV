@@ -11,7 +11,7 @@ public class GameState : MonoBehaviour
     // Restarts current game scene
     public void restartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("Map");
     }
 
     // Displays Game Over screen to player
