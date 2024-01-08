@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DifficultyManager : MonoBehaviour
+public class NewBehaviourScript : MonoBehaviour
 {
     public enum Difficulty { Easy, Normal, Hard }
     public static Difficulty currentDifficulty = Difficulty.Normal;
