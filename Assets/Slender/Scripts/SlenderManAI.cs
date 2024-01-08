@@ -1,12 +1,15 @@
 using UnityEngine;
 using UnityEngine.AI;
 
+
 public class SlenderManAI : MonoBehaviour
 {
     public Transform player; // Reference to the player's GameObject
     public float teleportDistance = 10f; // Maximum teleportation distance
     public float teleportCooldown = 5f; // Time between teleportation attempts
+
     public float returnCooldown = 10f; // Time before returning to the base spot
+
     [Range(0f, 1f)] public float chaseProbability = 0.65f; // Probability of chasing the player
     public float rotationSpeed = 5f; // Rotation speed when looking at the player
     public AudioClip teleportSound; // Reference to the teleport sound effect
@@ -52,6 +55,7 @@ public class SlenderManAI : MonoBehaviour
         }
 
         navMeshAgent.stoppingDistance = 1f; // Adjust stopping distance as needed
+
     }
 
     private void Update()
@@ -83,7 +87,6 @@ public class SlenderManAI : MonoBehaviour
             // Your AI movement logic goes here using NavMeshAgent
             navMeshAgent.SetDestination(player.position);
         }
-
         RotateTowardsPlayer();
 
         // Check player distance and toggle the "static" object accordingly
