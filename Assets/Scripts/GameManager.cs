@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,44 +10,58 @@ public class GameManager : MonoBehaviour
     public Text counterText;
     public GameObject winText;
     public int totalItemCount; // Total Item number
-    private int itemsRemaining;// The number of item remaining
+    private int itemsRemaining; // The number of items remaining
 
-
-    void Awake()
+    private void Awake()
     {
         if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded; // Subscribe to the sceneLoaded event
         }
         else if (instance != this)
         {
             Destroy(gameObject);
         }
 
-        // Initialize itemsRemaining with the total items to collect
         itemsRemaining = totalItemCount;
-        UpdateCounterText(); // Update the UI text on start
+        UpdateCounterText();
     }
 
-    //Counter for remaining time, if item is = 0----> win
+    // This method will be called every time a scene is loaded
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Find and assign the counterText and winText in the new scene
+        counterText = GameObject.Find("Counter Text").GetComponent<Text>();
+        winText = GameObject.Find("Win Screen");
+
+        // Update the counter text with the current itemsRemaining
+        UpdateCounterText();
+
+        // Any other initialization for new scene
+    }
+
+    // Counter for remaining items; if items = 0 -> win
     public void ItemCollected()
     {
-        if (itemsRemaining == 1)
-        {
-            diaryManager.OpenDiaryPage1();
-        }
-        else if (itemsRemaining == 2)
-        {
-            diaryManager.OpenDiaryPage2();
-        }
-        else if (itemsRemaining == 3)
-        {
-            diaryManager.OpenDiaryPage3();
-        }
-
         itemsRemaining--;
         UpdateCounterText();
+
+        switch (itemsRemaining)
+        {
+            case 1:
+                diaryManager.OpenDiaryPage1();
+                break;
+            case 2:
+                diaryManager.OpenDiaryPage2();
+                break;
+            case 3:
+                diaryManager.OpenDiaryPage3();
+                break;
+        }
+
+        CheckForWin();
     }
 
     public void CheckForWin()
@@ -57,7 +72,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //Update the number of item
+    // Update the number of items
     private void UpdateCounterText()
     {
         if (counterText != null)
@@ -69,29 +84,37 @@ public class GameManager : MonoBehaviour
             Debug.LogError("Counter Text not assigned in the Inspector");
         }
     }
-    //show the win game screen and freeze the game
+
+    // Show the win game screen and freeze the game
     private void WinGame()
     {
-        winText.gameObject.SetActive(true);
+        if (winText != null)
+        {
+            winText.SetActive(true);
+        }
         Time.timeScale = 0f;
     }
-    //restart the game and unfreeze
+
+    // Restart the game and unfreeze
     public void RestartTime()
     {
         Time.timeScale = 1f;
     }
-    //if the game is freezing, click r to restart
+
+    // If the game is frozen, click R to restart
     void Update()
     {
-        // Restart the level if the player presses the R key after winning
         if (Time.timeScale == 0 && Input.GetKeyDown(KeyCode.R))
         {
             RestartTime();
             // Reload the current scene
-            UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 
-
-
+    private void OnDestroy()
+    {
+        // Unsubscribe from the sceneLoaded event to prevent memory leaks
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
 }
