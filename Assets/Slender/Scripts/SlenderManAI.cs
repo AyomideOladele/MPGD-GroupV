@@ -1,15 +1,14 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 
-public class SlenderManAI : MonoBehaviour
+public class SlenderAI : MonoBehaviour
 {
     public Transform player; // Reference to the player's GameObject
     public float teleportDistance = 10f; // Maximum teleportation distance
     public float teleportCooldown = 5f; // Time between teleportation attempts
-
     public float returnCooldown = 10f; // Time before returning to the base spot
-
     [Range(0f, 1f)] public float chaseProbability = 0.65f; // Probability of chasing the player
     public float rotationSpeed = 5f; // Rotation speed when looking at the player
     public AudioClip teleportSound; // Reference to the teleport sound effect
@@ -25,6 +24,16 @@ public class SlenderManAI : MonoBehaviour
     private NavMeshAgent navMeshAgent;
     private bool isOnGround;
     public float groundCheckDistance = 0.2f;
+
+    public float damageRate = 10f; // Health deduction rate when player looks at the enemy
+    public float playerHealth = 100f; // Initial player health
+    public PlayerHealthManager playerHealthManager;
+
+    public float maxPlayerHealth = 100f; // Maximum player health
+
+    public float healingRate = 10f; // Healing rate when not looking at the enemy
+
+    public GameObject restartCanvas; // Reference to the restart canvas GameObject
 
     private void Start()
     {
@@ -56,6 +65,11 @@ public class SlenderManAI : MonoBehaviour
 
         navMeshAgent.stoppingDistance = 1f; // Adjust stopping distance as needed
 
+        playerHealthManager = FindObjectOfType<PlayerHealthManager>();
+        if (playerHealthManager == null)
+        {
+            Debug.LogError("PlayerHealthManager script not found!");
+        }
     }
 
     private void Update()
@@ -87,6 +101,7 @@ public class SlenderManAI : MonoBehaviour
             // Your AI movement logic goes here using NavMeshAgent
             navMeshAgent.SetDestination(player.position);
         }
+
         RotateTowardsPlayer();
 
         // Check player distance and toggle the "static" object accordingly
@@ -97,6 +112,20 @@ public class SlenderManAI : MonoBehaviour
             {
                 staticObject.SetActive(true);
             }
+
+            if (isPlayerLookingAtEnemy())
+            {
+                // Deduct health from the player over time
+                playerHealth -= damageRate * Time.deltaTime;
+
+                // Check if player's health is below zero
+                if (playerHealth <= 0)
+                {
+                    // Implement player death logic (e.g., game over, respawn, etc.)
+                    Debug.LogError("Player is dead");
+                    ShowRestartScreen();
+                }
+            }
         }
         else
         {
@@ -104,7 +133,29 @@ public class SlenderManAI : MonoBehaviour
             {
                 staticObject.SetActive(false);
             }
+
+            // If not looking at the enemy and outside static activation range, start healing
+            playerHealth += healingRate * Time.deltaTime;
+
+            // Clamp player's health to the maximum
+            playerHealth = Mathf.Clamp(playerHealth, 0f, maxPlayerHealth);
         }
+    }
+
+
+    private bool isPlayerLookingAtEnemy()
+    {
+        // Check if the player is looking at the enemy within a certain angle
+        Vector3 directionToPlayer = player.position - transform.position;
+        float angle = Vector3.Angle(directionToPlayer, transform.forward);
+
+        if (angle < 45f) // Adjust the angle as needed
+        {
+            // Player is looking at the enemy
+            return true;
+        }
+
+        return false;
     }
 
     private void DecideTeleportAction()
@@ -164,6 +215,15 @@ public class SlenderManAI : MonoBehaviour
             isOnGround = false;
             // If the enemy is not on the ground, stop the NavMeshAgent
             navMeshAgent.isStopped = true;
+        }
+    }
+
+    private void ShowRestartScreen()
+    {
+        // Activate the restart canvas
+        if (restartCanvas != null)
+        {
+            restartCanvas.SetActive(true);
         }
     }
 }
