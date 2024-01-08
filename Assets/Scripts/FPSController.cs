@@ -11,7 +11,7 @@ public class FPSController : MonoBehaviour
     public float jumpPower = 7f;
     public float gravity = 10f;
 
-
+    bool isPressingS = false;
     public float lookSpeed = 2f;
     public float lookXLimit = 45f;
 
@@ -24,7 +24,7 @@ public class FPSController : MonoBehaviour
 
     CharacterController characterController;
     void Start()
-    {   
+    {
         HideAndLockCursor();
         characterController = GetComponent<CharacterController>();
     }
@@ -35,19 +35,25 @@ public class FPSController : MonoBehaviour
         // Press Escape to unlock the cursor
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            UnlockAndShowCursor();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            HideAndLockCursor();
+            ToggleCursorState();
         }
         #region Handles Movment
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
 
-        // Press Left Shift to run
-        bool isRunning = Input.GetKey(KeyCode.LeftShift);
+        // Check if 'S' key is pressed
+        if (Input.GetKey(KeyCode.S))
+        {
+            isPressingS = true;
+        }
+        else
+        {
+            isPressingS = false;
+        }
+
+        // Press Left Shift to run, but only if 'S' key is not pressed
+        bool isRunning = Input.GetKey(KeyCode.LeftShift) && !isPressingS;
+
         float curSpeedX = canMove ? (isRunning ? runSpeed : walkSpeed) * Input.GetAxis("Vertical") : 0;
         float curSpeedY = canMove ? (isRunning ? runSpeed : walkSpeed) * Input.GetAxis("Horizontal") : 0;
         float movementDirectionY = moveDirection.y;
@@ -86,14 +92,23 @@ public class FPSController : MonoBehaviour
         #endregion
     }
     //This function mainly to hide the Mouse Arrow, click esc to show mouse arrow.
+    private void ToggleCursorState()
+    {
+        if (Cursor.lockState == CursorLockMode.None)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+    }
+
     private void HideAndLockCursor()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-    }
-    private void UnlockAndShowCursor()
-    {
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
     }
 }

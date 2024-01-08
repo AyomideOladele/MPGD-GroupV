@@ -9,9 +9,10 @@ public class Item : MonoBehaviour
     {
         if (!hasBeenCounted)
         {
-            gameObject.SetActive(false); // Deactivate the item
+            
             GameManager.instance.ItemCollected(); // Increment the counter in GameManager
             hasBeenCounted = true; // Mark as counted
+            gameObject.SetActive(false); // Deactivate the item
         }
     }
 }
