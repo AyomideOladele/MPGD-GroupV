@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class DifficultyManager : MonoBehaviour
 {
     public enum Difficulty { Easy, Normal, Hard }
     public static Difficulty currentDifficulty = Difficulty.Normal;
@@ -24,10 +24,42 @@ public class NewBehaviourScript : MonoBehaviour
     public float hardEnemyDetectionRange = 15f;
 
 
-    // Method to set difficulty
+    // Methods to set difficulty
     public void SetDifficulty(Difficulty difficulty)
     {
         currentDifficulty = difficulty;
+        SaveDifficulty();
+    }
+
+    public void SetEasyDifficulty()
+    {
+        SetDifficulty(Difficulty.Easy);
+    }
+
+    public void SetNormalDifficulty()
+    {
+        SetDifficulty(Difficulty.Normal);
+    }
+
+    public void SetHardDifficulty()
+    {
+        SetDifficulty(Difficulty.Hard);
+    }
+
+    // Saves the set difficulty to PlayerPrefs
+    private void SaveDifficulty()
+    {
+        PlayerPrefs.SetInt("gameDifficulty", (int)currentDifficulty);
+        PlayerPrefs.Save();
+    }
+
+    // Loads the set difficulty from PlayerPrefs
+    private void LoadDifficulty()
+    {
+        if (PlayerPrefs.HasKey("gameDifficulty"))
+        {
+            currentDifficulty = (Difficulty)PlayerPrefs.GetInt("gameDifficulty");
+        }
     }
 
     // Method to get settings based on the current difficulty
@@ -74,6 +106,11 @@ public class NewBehaviourScript : MonoBehaviour
             default:
                 return normalEnemyDetectionRange;
         }
+    }
+
+    void Start()
+    {
+        LoadDifficulty(); // Load the difficulty setting at the start of  game
     }
 }
 
