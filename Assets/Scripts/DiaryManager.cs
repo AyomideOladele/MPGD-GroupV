@@ -10,6 +10,16 @@ public class DiaryManager : MonoBehaviour
 
     public GameManager gameManager;
 
+    private void Awake()
+    {
+        // Find the GameManager instance when this object is initialized
+        gameManager = GameManager.instance;
+
+        if (gameManager == null)
+        {
+            Debug.LogError("GameManager not found!");
+        }
+    }
     public void OpenDiaryPage1()
     {
         diaryPage1.SetActive(true);
@@ -38,7 +48,14 @@ public class DiaryManager : MonoBehaviour
     public void CloseDiaryPage3()
     {
         diaryPage3.SetActive(false);
-        gameManager.CheckForWin();
+        if (gameManager != null)
+        {
+            gameManager.CheckForWin();
+        }
+        else
+        {
+            Debug.LogError("GameManager is null when trying to call CheckForWin");
+        }
     }
 
     private void PauseGame()

@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
         // Find and assign the counterText and winText in the new scene
         counterText = GameObject.Find("Counter Text").GetComponent<Text>();
         winText = GameObject.Find("Win Screen");
-
+        diaryManager = FindFirstObjectByType<DiaryManager>();
         // Update the counter text with the current itemsRemaining
         UpdateCounterText();
 
