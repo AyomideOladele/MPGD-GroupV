@@ -1,11 +1,15 @@
 using UnityEngine;
+using UnityEngine.AI;
+
 
 public class SlenderManAI : MonoBehaviour
 {
     public Transform player; // Reference to the player's GameObject
     public float teleportDistance = 10f; // Maximum teleportation distance
     public float teleportCooldown = 5f; // Time between teleportation attempts
-    public float returnCooldown = 10f; // Time before returning to base spot
+
+    public float returnCooldown = 10f; // Time before returning to the base spot
+
     [Range(0f, 1f)] public float chaseProbability = 0.65f; // Probability of chasing the player
     public float rotationSpeed = 5f; // Rotation speed when looking at the player
     public AudioClip teleportSound; // Reference to the teleport sound effect
@@ -17,6 +21,10 @@ public class SlenderManAI : MonoBehaviour
     private Vector3 baseTeleportSpot;
     private float teleportTimer;
     private bool returningToBase;
+
+    private NavMeshAgent navMeshAgent;
+    private bool isOnGround;
+    public float groundCheckDistance = 0.2f;
 
     private void Start()
     {
@@ -38,14 +46,22 @@ public class SlenderManAI : MonoBehaviour
         {
             staticObject.SetActive(false);
         }
+
+        // Initialize the NavMeshAgent
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        if (navMeshAgent == null)
+        {
+            navMeshAgent = gameObject.AddComponent<NavMeshAgent>();
+        }
+
+        navMeshAgent.stoppingDistance = 1f; // Adjust stopping distance as needed
+
     }
 
     private void Update()
     {
-
         if (player == null)
         {
-           
             return;
         }
 
@@ -66,6 +82,11 @@ public class SlenderManAI : MonoBehaviour
             }
         }
 
+        if (isOnGround)
+        {
+            // Your AI movement logic goes here using NavMeshAgent
+            navMeshAgent.SetDestination(player.position);
+        }
         RotateTowardsPlayer();
 
         // Check player distance and toggle the "static" object accordingly
@@ -128,6 +149,21 @@ public class SlenderManAI : MonoBehaviour
         {
             Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        }
+    }
+
+    private void CheckIfOnGround()
+    {
+        // Cast a ray downwards to check for the ground
+        if (Physics.Raycast(transform.position, Vector3.down, groundCheckDistance))
+        {
+            isOnGround = true;
+        }
+        else
+        {
+            isOnGround = false;
+            // If the enemy is not on the ground, stop the NavMeshAgent
+            navMeshAgent.isStopped = true;
         }
     }
 }
