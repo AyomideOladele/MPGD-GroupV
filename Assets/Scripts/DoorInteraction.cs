@@ -1,25 +1,34 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class DoorInteraction : MonoBehaviour
 {
+    public string School; // Name of the scene you want to transition to
     public GameObject promptText; // Reference to the Text element displaying the prompt
+
     private bool canInteract = false;
 
     private void Update()
     {
+        // Check if the player is in front of the door (you can use colliders for this)
+        // For example, if the player's collider enters the door's trigger collider
+
         if (canInteract)
         {
+            // Display the prompt text
             promptText.SetActive(true);
 
+            // Check if the player presses the "E" key
             if (Input.GetKeyDown(KeyCode.E))
             {
-                SavePlayerPosition();
-                LoadAppropriateScene();
+                // Load the target scene
+                SceneManager.LoadScene(School);
             }
         }
         else
         {
+            // Hide the prompt text
             promptText.SetActive(false);
         }
     }
@@ -39,46 +48,5 @@ public class DoorInteraction : MonoBehaviour
             canInteract = false;
         }
     }
-
-    private void SavePlayerPosition()
-    {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
-        {
-            PlayerData.LastPosition = player.transform.position;
-            PlayerData.PositionSaved = true;
-            PlayerData.LastScene = SceneManager.GetActiveScene().name; // Save the current scene name
-        }
-        else
-        {
-            Debug.LogError("Player object not found. Make sure your player is tagged correctly.");
-        }
-    }
-
-
-    private void LoadAppropriateScene()
-    {
-        // Determine the current scene
-        string currentScene = SceneManager.GetActiveScene().name;
-
-        if (currentScene == "Map")
-        {
-            // If the current scene is "Map", load "School"
-            SceneManager.LoadScene("School");
-        }
-        else
-        {
-            // Otherwise, load "Map"
-            SceneManager.LoadScene("Map");
-        }
-    }
-}
-
-// PlayerData class to hold the player's position
-public static class PlayerData
-{
-    public static Vector3 LastPosition;
-    public static bool PositionSaved = false;
-    public static string LastScene; // Add this line
 }
 

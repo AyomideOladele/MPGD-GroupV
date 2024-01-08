@@ -10,25 +10,6 @@ public class DiaryManager : MonoBehaviour
 
     public GameManager gameManager;
 
-    private void Awake()
-    {
-        // Find the GameManager instance when this object is initialized
-        gameManager = GameManager.instance;
-
-        if (gameManager == null)
-        {
-            Debug.LogError("GameManager not found!");
-        }
-    }
-
-    private void Update()
-    {
-        // Check if 'C' key is pressed
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            CloseAllDiaryPages();
-        }
-    }
     public void OpenDiaryPage1()
     {
         diaryPage1.SetActive(true);
@@ -57,22 +38,17 @@ public class DiaryManager : MonoBehaviour
     public void CloseDiaryPage3()
     {
         diaryPage3.SetActive(false);
-        if (gameManager != null)
-        {
-            gameManager.CheckForWin();
-        }
-        else
-        {
-            Debug.LogError("GameManager is null when trying to call CheckForWin");
-        }
+        gameManager.CheckForWin();
     }
 
-    // Helper method to close all diary pages
-    private void CloseAllDiaryPages()
+    private void PauseGame()
     {
-        CloseDiaryPage1();
-        CloseDiaryPage2();
-        CloseDiaryPage3();
+        Time.timeScale = 0f;
+    }
+
+    private void ResumeGame()
+    {
+        Time.timeScale = 1f;
     }
 
 }

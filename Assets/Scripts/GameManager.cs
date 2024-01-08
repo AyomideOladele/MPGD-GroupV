@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
     public int totalItemCount; // Total Item number
     private int itemsRemaining; // The number of items remaining
 
-
     private void Awake()
     {
         if (instance == null)
@@ -36,15 +35,10 @@ public class GameManager : MonoBehaviour
         // Find and assign the counterText and winText in the new scene
         counterText = GameObject.Find("Counter Text").GetComponent<Text>();
         winText = GameObject.Find("Win Screen");
-        diaryManager = FindFirstObjectByType<DiaryManager>();
+
         // Update the counter text with the current itemsRemaining
         UpdateCounterText();
 
-        GameObject parentObject = GameObject.Find("Game State Canvas");
-        if (parentObject != null)
-        {
-            winText = parentObject.transform.Find("Win Screen").gameObject;
-        }
         // Any other initialization for new scene
     }
 
@@ -123,5 +117,4 @@ public class GameManager : MonoBehaviour
         // Unsubscribe from the sceneLoaded event to prevent memory leaks
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
-
 }

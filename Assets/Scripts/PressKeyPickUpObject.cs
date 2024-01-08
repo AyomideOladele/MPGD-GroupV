@@ -7,6 +7,7 @@ public class PressKeyPickUpObject : MonoBehaviour
     public GameObject Instruction;//show the interact text
     public GameObject ThisTrigger;//trigger range
     public GameObject ObjectOnGround;//the object that can be collect 
+    public GameObject ObjectOnHand;//the object that player can hold
     public bool Action = false;
 
     //intially the object and trigger range will be active
@@ -15,7 +16,7 @@ public class PressKeyPickUpObject : MonoBehaviour
         Instruction.SetActive(false);
         ThisTrigger.SetActive(true);
         ObjectOnGround.SetActive(true);
-        
+        ObjectOnHand.SetActive(false);
 
     }
     //if player collected the object, object will set to not active. Otherwise, the trigger text and action will set to active
@@ -50,6 +51,7 @@ public class PressKeyPickUpObject : MonoBehaviour
             if (ObjectOnGround.activeSelf) // Check if the ObjectOnGround is active
             {
                 ObjectOnGround.GetComponent<Item>()?.DeactivateAndCount(); // Call the method to deactivate and count
+                ObjectOnHand.SetActive(true);
                 ThisTrigger.SetActive(false);
                 Instruction.SetActive(false);
                 Action = false;
