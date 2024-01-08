@@ -3268,7 +3268,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2dbcab6e0dc65cd42bf4ea46d6561412, type: 2}
+  - {fileID: 2100000, guid: 7d74e7e555f1d8c4bb39338b96ea30a8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -41450,6 +41450,34 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &850796908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 850796907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee35ad28e06332a44b6708c499276464, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 135972017}
+  teleportDistance: 20
+  teleportCooldown: 10
+  returnCooldown: 12
+  chaseProbability: 1
+  rotationSpeed: 5
+  teleportSound: {fileID: 8300000, guid: fb97aacd7c793e346a44429ee8cb8ce1, type: 3}
+  staticObject: {fileID: 60802588}
+  staticActivationRange: 12
+  groundCheckDistance: 0.2
+  damageRate: 10
+  playerHealth: 100
+  playerHealthManager: {fileID: 0}
+  maxPlayerHealth: 100
+  healingRate: 10
+  restartCanvas: {fileID: 0}
 --- !u!4 &850796909
 Transform:
   m_ObjectHideFlags: 0
@@ -100999,3 +101027,4 @@ SceneRoots:
   - {fileID: 945570070}
   - {fileID: 926353121}
   - {fileID: 1794475955}
+  - {fileID: 15647862}
