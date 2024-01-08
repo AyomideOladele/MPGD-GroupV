@@ -7089,6 +7089,7 @@ GameObject:
   - component: {fileID: 135972020}
   - component: {fileID: 135972021}
   - component: {fileID: 135972022}
+  - component: {fileID: 135972023}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -12487,7 +12488,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d41717252cdd0d4b95ea2e5d91d6c8e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier:
 --- !u!1 &230262843 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1045554870899298, guid: 78622f696f6248e4dbc85cadd8905044, type: 3}
@@ -81039,7 +81040,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1014143189}
-  - {fileID: 60802594}
+  - {fileID: 1503865259}
   m_Father: {fileID: 135972017}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!81 &1760624659
@@ -101058,7 +101059,6 @@ SceneRoots:
   - {fileID: 1139955864}
   - {fileID: 1747935242}
   - {fileID: 248766384}
-  - {fileID: 15647862}
   - {fileID: 51276252}
   - {fileID: 843611741}
   - {fileID: 2075646532}
@@ -101085,4 +101085,3 @@ SceneRoots:
   - {fileID: 945570070}
   - {fileID: 926353121}
   - {fileID: 1794475955}
-
