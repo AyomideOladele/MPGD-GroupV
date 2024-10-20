@@ -13,6 +13,13 @@ How to play:
     SPACEBAR to jump
     LEFT-SHIFT key to run.
 
+
+Videos:
+
+Prototype Video: https://www.youtube.com/watch?v=RErfRjWMXWg
+Final Demo Video: ...
+
+
 CREDITS:
 
 This Game uses these sounds from freesound: "beeps-41.wav" by Greencouch ( https://freesound.org/people/Greencouch/sounds/124904/) licensed under CCBYNC 3.0
